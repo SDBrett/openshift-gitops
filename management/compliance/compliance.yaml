@@ -6,6 +6,17 @@ metadata:
     argocd.argoproj.io/hook: PreSync
   name: openshift-compliance
 ---
+apiVersion: operators.coreos.com/v1alpha1
+kind: CatalogSource
+metadata:
+  name: compliance-operator
+  namespace: olm
+spec:
+  displayName: Compliance Operator Upstream
+  publisher: github.com/openshift/compliance-operator
+  sourceType: grpc
+  image: quay.io/compliance-operator/compliance-operator-index:latest
+---
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
 metadata:
