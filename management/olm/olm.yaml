@@ -1,14 +1,4 @@
 ---
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: olm
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: operators
----
 kind: ServiceAccount
 apiVersion: v1
 metadata:
@@ -96,8 +86,6 @@ spec:
             requests:
               cpu: 10m
               memory: 160Mi
-          
-      
       nodeSelector:
         kubernetes.io/os: linux
 ---
@@ -147,14 +135,10 @@ spec:
               path: /healthz
               port: 8080
           terminationMessagePolicy: FallbackToLogsOnError
-          env:
-          
           resources:
             requests:
               cpu: 10m
               memory: 80Mi
-          
-      
       nodeSelector:
         kubernetes.io/os: linux
 ---
@@ -188,12 +172,6 @@ rules:
 - apiGroups: ["packages.operators.coreos.com"]
   resources: ["packagemanifests", "packagemanifests/icon"]
   verbs: ["get", "list", "watch"]
----
-apiVersion: operators.coreos.com/v1
-kind: OperatorGroup
-metadata:
-  name: global-operators
-  namespace: operators
 ---
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
